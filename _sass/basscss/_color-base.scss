@@ -1,17 +1,15 @@
 /* Basscss Color Base */
 
 body {
-  color: $dark-gray;
-  background-color: white;
+  color: white;
+  background-color: transparent !important;
+  background-image: linear-gradient(to bottom, #1a1129 0%, #34294f);
+  background-position: top;
 }
 
 a {
   color: $blue;
   text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
 }
 
 pre,

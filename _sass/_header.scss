@@ -4,7 +4,8 @@
 }
 
 .site-header a {
-  color: $header-color;
+  color: #f92aad;
+  text-shadow: 0 0 2px #100c0f, 0 0 10px #dc078e, 0 0 20px #fff3;
   font-size: $h3;
   font-weight: $header-font-weight;
   background-image: none;
@@ -19,7 +20,8 @@
 }
 
 .site-header nav a {
-  color: $nav-color;
+  color: #fff5f6;
+  text-shadow: 0 0 2px #000, 0 0 10px #fc1f2c75, 0 0 5px #fc1f2c75, 0 0 15px #fc1f2c75;
 }
 
 .site-header nav a:hover,
@@ -28,9 +30,7 @@
 .site-header nav a.nav-active:hover,
 .site-header nav a.nav-active:focus,
 .site-header nav a.nav-active:active {
-  color: $nav-link-color;
-  opacity: 1;
-  border-bottom: $nav-link-border-bottom;
+  opacity: 0.88;
 }
 
 .site-header nav a.nav-active {

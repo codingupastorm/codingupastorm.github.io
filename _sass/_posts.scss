@@ -17,7 +17,8 @@
 .post-link .post-title {
   margin-top: 0;
   font-weight: 600;
-  color: #333;
+  color: #72f1b8;
+  text-shadow: 0 0 2px #100c0f, 0 0 20px #257c5575, 0 0 30px #21272475;
 }
 
 .post-footer {
@@ -39,10 +40,16 @@
   font-weight: 300;
   margin: 0;
   padding: .25em 0;
-  color: #7a7a7a;
   font-style: italic;
+  color: #f4eee4;
+  text-shadow: 0 0 2px #393a33, 0 0 8px #f39f0575, 0 0 2px #f39f0575;
 }
 
 .related-post-title {
   border-bottom: thin solid #f3f3f3;
+}
+
+h1, h2 {
+  color: #72f1b8;
+  text-shadow: 0 0 2px #100c0f, 0 0 20px #257c5575, 0 0 30px #21272475;
 }
