@@ -2,7 +2,7 @@
 title:       "{🌩} Coding Up A Storm"
 email:       jordandrews@hotmail.com
 author:      Jordan Andrews
-description: "Jordan Andrews's (@codingupastorm) website and blog."
+description: "Jordan Andrews's website and blog."
 baseurl:     ""
 url:         "https://codingupastorm.github.io"
 date_format: "%b %-d, %Y"
@@ -13,7 +13,7 @@ header_pages:
 google_verification:
 # Use either direct GA implementation or set up GTM account
 # - using both will skew your data (leave blank to not use at all)
-google_analytics:
+google_analytics: UA-105994508-3
 google_tag_manager:
 # Bing services
 bing_verification:
