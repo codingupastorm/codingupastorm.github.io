@@ -4,7 +4,7 @@ email:       jordandrews@hotmail.com
 author:      Jordan Andrews
 description: "Jordan Andrews's (@codingupastorm) website and blog."
 baseurl:     ""
-url:         "http://codingupastorm.dev"
+url:         "https://codingupastorm.github.io"
 date_format: "%b %-d, %Y"
 header_pages:
  - about.md
