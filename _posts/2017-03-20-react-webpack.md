@@ -6,7 +6,7 @@ summary:    Details how to set up a .NET Core application with Webpack and React
 categories: 
 ---
 
-![desk](/images/vs-webpack.png)
+![Visual Studio and Webpack logos](/images/vs-webpack.png)
 
 In 2017, setting up an environment for a modern web app can be heinous. With the rise of precompiled languages and [javascrip](https://hackernoon.com/tagged/javascript)t package managers galore, setting up a solid base for your project can take hours. Throw in trying to integrate this with a server-side framework like .NET Core, using Visual Studio as your IDE and boom — you’ve lost days.
 

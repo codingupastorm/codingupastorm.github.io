@@ -6,7 +6,7 @@ summary:    Using smart contracts to protect migrant workers from exploitation.
 categories: 
 ---
 
-![](/images/handshake.png)
+![A migrant worker](/images/handshake.png)
 
 Everyone loves a good discussion about how the [blockchain](https://hackernoon.com/tagged/blockchain) is going to disrupt industries such as finance, how it will overhaul citizens’ interactions with governments, and how you should invest in their ICO to give money to their newly-formed corporate. Interestingly however, blockchains also have the ability to improve the lives of vulnerable populations, through various means such as giving them a [tangible identity](http://fortune.com/2017/06/19/id2020-blockchain-microsoft/), and [empowering entrepreneurs in poorer countries](https://hbr.org/2017/05/how-blockchain-could-help-emerging-markets-leap-ahead). Having recognized the potential for significant social changes, [ConsenSys](undefined) have organised the [Blockchain for Social Impact Hackathon](https://www.blockchainforsocialimpact.com/hackathon/).
 
@@ -78,5 +78,3 @@ Ultimately, this small interaction between recruiter and employee is just one pi
 ## Get In Touch
 
 We’re already working with some prevalent organisations in the industry, including the WHO and StaffHouse in the Philippines. If you’re a forward-thinking, [technology](https://hackernoon.com/tagged/technology)-first, ethical recruitment agency or employer, and you want to be able to verify your compliance publicly, and ensure a safer employment experience for your workers, hit us up at [handshake.tech](http://handshake.tech/index.html) or contact me directly here or on Twitter: @codingupastorm!
-
- <iframe src="https://medium.com/media/3c851dac986ab6dbb2d1aaa91205a8eb" frameborder=0></iframe>
