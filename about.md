@@ -13,6 +13,6 @@ I'm Jordan Andrews ([@codingupastorm](https://twitter.com/codingupastorm)), an A
 
 I write here about software-related things that are interesting to me. 
 
-I can help you with building software, testing software, reviewing code, solution architecture or improving your team's development process. Please get in touch through one of the social links above or via jordandrews@hotmail.com.
+I can help you with building software, testing software, reviewing code, solution architecture or improving your team's development process. Please get in touch through one of the social links above or via the [contact form](/contact).
 
 I work out of Melbourne, Australia but I have experience working remotely for companies globally.
