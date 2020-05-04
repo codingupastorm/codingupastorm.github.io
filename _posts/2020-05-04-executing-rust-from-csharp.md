@@ -1,8 +1,8 @@
 ---
 layout:     post
-title:      Executing Rust from C#
+title:      Executing Rust code from C#
 date:       2020-05-04
-summary:    How to execute Rust code from a C# application (and is it faster?!)
+summary:    How to execute Rust code from within a C# / .NET application (and is it faster?!)
 categories: 
 ---
 
