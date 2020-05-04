@@ -9,7 +9,7 @@ tags: about
 
 Hey there, 
 
-I'm Jordan Andrews ([@codingupastorm](https://twitter.com/codingupastorm)), an Australian software developer. I enjoy working on difficult problems, especially in the domains of cryptocurrency and quantum computing. I really enjoy working with .NET and C#, but I have experience delivering and reviewing code in Rust, Javascript, and C++ among others. 
+I'm Jordan Andrews ([@codingupastorm](https://twitter.com/codingupastorm)), an Australian software developer. I enjoy working on difficult problems, especially in the domains of cryptocurrency and quantum computing. I really enjoy working with C# / .NET and Rust, but I have experience delivering and reviewing code in Javascript, C++ and Groovy among many others. 
 
 I write here about software-related things that are interesting to me. 
 
