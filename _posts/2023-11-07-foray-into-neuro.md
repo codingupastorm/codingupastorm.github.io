@@ -1,146 +1,32 @@
 ---
 layout:     post
-title:      Executing Rust code from C#
-date:       2020-05-04
-summary:    How to execute Rust code from within a C# / .NET application (and is it faster?!)
+title:      A Foray into Neuro-stuff
+date:       2023-11-07
+summary:    I haven't posted for 3 years - describing what I'm thinking about and a loose commitment to continue posting
 categories: 
 ---
 
-![C# and Rust logos](/images/cs-rs.png)
+I haven't posted in 3 years. I'm pursuing some private study / learning into Neuroscience generally, and trying to find some interesting, solvable problems I can commit to contributing to, bringing my previous experience in general software engineering.
 
-Right at the front of "The Rust Book" there is [a section about calling Rust code from other languages](https://doc.rust-lang.org/1.5.0/book/rust-inside-other-languages.html). The examples use Python, Ruby and Javascript and show how using Rust for expensive standalone processes can save time.
+I'm deliberately avoiding academic research - something like pursuing a PhD. I'll post about why one day.
 
-I've spent a lot of time working with C# in my career, so naturally I was curious how much faster the example Rust code would be than the C# equivalent.
+What I want to do is share what I'm learning and looking into with some cadence. I could note this privately, but I think there are some benefits to it being public. 
+- I'm loosely committed to continue to work and post by talking about it publicly
+- Writing about things forces one to have clarity of thought, so I get a chance to refine my own thinking
+- Assuming I do "get somewhere" with this, it could provide a useful roadmap for myself or others on how I got here. (I'd love to elaborate also on what "get somewhere" means - again I'll post why one day.)
 
-The full repo is available [here](https://github.com/codingupastorm/rust-in-csharp) if you want to try it for yourself.
 
-Here's the Rust code:
+The format will evolve as I go. 
 
-    pub extern fn process() {
-        let handles: Vec<_> = (0..10).map(|_| {
-            thread::spawn(|| {
-                let mut x = 0;
-                for _ in 0..5_000_000 {
-                    x += 1
-                }
-                x
-            })
-        }).collect();
+## Here's what I'm thinking about now
 
-        for h in handles {
-            println!("Rust thread finished with count={}",
-            h.join().map_err(|_| "Could not join a thread!").unwrap());
-        }
-    }
+Current wider ideas:
+- For the most part, academic code is poorly readable, not highly reusable, and slow.
+- There is starting to be a heap of data available online, which, so far as I can tell, noone is using cohesively. See [OpenNeuro](https://openneuro.org/)
+- There are a heap of documented problems available online, usually in the form of PhD breifings. See [The Florey Institute](https://florey.edu.au/careers-and-study/studying-at-the-florey/) for an example.
 
-This code is doing something very trivial: it's starting 10 threads, counting to 5,000,000 on each of them, and then announcing when it's complete.
-
-Here is roughly the C# equivalent:
-
-        private static void ProcessCSharp()
-        {
-            const int threadCount = 10;
-            Task[] tasks = new Task[threadCount];
-
-            for (int i = 0; i < threadCount; i++)
-            {
-                tasks[i] = Task.Factory.StartNew(() =>
-                {
-                    int count = 0;
-                    for (int j = 0; j < 5_000_000; j++)
-                    {
-                        count += 1;
-                    }
-                    Console.WriteLine("C# thread finished with count={0}", count);
-                });
-            }
-
-            Task.WaitAll(tasks);
-        }
-
-We'll see how these compare in terms of run-time soon.
-
-## Building a DLL From a Rust Project
-
-To be able to call Rust methods from C#, we need to put it into a format that C# can understand. In this case we're going to use DLL (Dynamic Linked Library) files. 
-
-To generate a DLL from the Rust project, we have to firstly ensure that the external-facing methods are inside _lib.rs_ and given the visibility `pub extern`. They also need to be marked with the `#[no_mangle]` attribute, whch prevents Rust from internally messing with the API names during optimisation.
-
-Lastly, we need to add these lines to Cargo.toml before the `[dependencies]` section:
-
-    [lib]
-    name="RustLibrary"
-    crate-type = ["dylib"]
-
-These lines tell Rust and Cargo that we want a DLL named _RustLibrary.dll_ when we build the project.
-
-When all this is done, all we have to do is build our Rust project (with the Release flag because we want it to be as fast as possible):
-
-    cargo build --release
-
-And voila! Our DLL, _target/release/RustLibrary.dll_ has been created for us!
-
-## Calling a DLL From A C# Project
-
-Now that we have a DLL, we can interact with it by adding _RustLibrary.dll_ to a Visual Studio project, ensuring that it gets copied to the output folder on build, and importing the DLL inside our C# code. 
-
-Here's how that looks:
-
-        [DllImport("RustLibrary.dll", EntryPoint = "process")]
-        private static extern void ProcessInRust();
-
-This is where the magic happens - if you now call `ProcessInRust()` anywhere in your C# project, what happens behind the scenes is your .NET process calls into the Rust code we created earlier!
-
-## Is it Faster? Yes.
-
-Here's the extremely basic code I wrote to test the speed of the `ProcessInRust()` and `ProcessCSharp()` methods above.
-
-    Stopwatch csharpStopwatch = new Stopwatch();
-    Stopwatch rustStopwatch = new Stopwatch();
-
-    csharpStopwatch.Start();
-    ProcessCSharp();
-    csharpStopwatch.Stop();
-
-    rustStopwatch.Start();
-    ProcessInRust();
-    rustStopwatch.Stop();
-
-    Console.WriteLine();
-    Console.WriteLine("Execution time in C#: " + csharpStopwatch.Elapsed);
-    Console.WriteLine("Execution time in Rust: " + rustStopwatch.Elapsed);
-
-When I run this on my computer in the C# project:
-
-    dotnet run -- --release
-
-This is the output:
-
-    C# thread finished with count=5000000
-    C# thread finished with count=5000000
-    C# thread finished with count=5000000
-    C# thread finished with count=5000000
-    C# thread finished with count=5000000
-    C# thread finished with count=5000000
-    C# thread finished with count=5000000
-    C# thread finished with count=5000000
-    C# thread finished with count=5000000
-    C# thread finished with count=5000000
-    Rust thread finished with count=5000000
-    Rust thread finished with count=5000000
-    Rust thread finished with count=5000000
-    Rust thread finished with count=5000000
-    Rust thread finished with count=5000000
-    Rust thread finished with count=5000000
-    Rust thread finished with count=5000000
-    Rust thread finished with count=5000000
-    Rust thread finished with count=5000000
-    Rust thread finished with count=5000000
-
-    Execution time in C#: 00:00:00.0387920
-    Execution time in Rust: 00:00:00.0133602
-
-The results varied but this is about the closest C# got to Rust in my runs. According to this, Rust is around 3 times faster at summing to 5,000,000 on 10 threads. That's not as big a difference as I was expecting, though I understand that calling into an external library itself is accounting for some of the Rust method's execution time. 
-
-I'm excited to try out some more complicated scenarios and see what the difference is like.
+Specific Learnings:
+- It seems like the most available and useful format for gathering information from living brains is the MRI. An MRI can retrieve different data based on running MRI sequences. 
+- Tractography is a specific imaging technique based on a set of particular MRI sequences, the DWI (Diffusion Weighted Image)
+- I think this is a good starting resource for tractography, which I got to by following a more recent article on tractography, which was part of a PhD brief: [Hot topics in diffusion tractography](https://www.cmu.edu/dietrich/psychology/cognitiveaxon/documents/DellAcqua_Catani_2013.pdf)
 
