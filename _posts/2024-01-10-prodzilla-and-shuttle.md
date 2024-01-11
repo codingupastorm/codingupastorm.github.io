@@ -1,8 +1,8 @@
 ---
 layout:     post
-title:      How I'm Free Synthetic Monitoring With Open Source Rust - Prodzilla x Shuttle
+title:      How I'm Getting Free Synthetic Monitoring
 date:       2023-11-07
-summary:    I haven't posted for 3 years - describing what I'm thinking about and a loose commitment to continue posting
+summary:    A tutorial for using Prodzilla and Shuttle to Get Free Synthetic Monitoring
 categories: 
 ---
 
