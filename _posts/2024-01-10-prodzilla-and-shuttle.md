@@ -46,7 +46,7 @@ probes:
       interval: 300
 ```
 
-The other fields are mostly self-explanatory, but you can also include expectations about *Body*, and can also use the operations *Contains* or *IsOneOf* (using pipe | separated values).
+The other fields are mostly self-explanatory, but you can also include expectations about *Body*, and can also use the operations *Contains* or *IsOneOf* (using pipe separated values).
 
 If you need to add auth, Prodzilla currently supports auth using Bearer tokens in headers, though you would need a long-lived token with the current version of Prodzilla.
 
@@ -90,7 +90,10 @@ And voila! If you navigate to *https://{name}.shuttleapp.rs* you should see a Ro
 
 I hope that's been helpful - would love to hear any feedback. Happy roaring!
 
-[X / Twitter: @codingupastorm](https://x.com/codingupastorm)
-[LinkedIn](https://www.linkedin.com/in/jordandrews/)
-[prodzilla.io](https://prodzilla.io)
+[X / Twitter: @codingupastorm](https://x.com/codingupastorm).
+
+[LinkedIn](https://www.linkedin.com/in/jordandrews/).
+
+[prodzilla.io](https://prodzilla.io).
+
 
