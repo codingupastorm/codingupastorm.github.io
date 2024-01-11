@@ -2,7 +2,7 @@
 layout:     post
 title:      How I'm Getting Free Synthetic Monitoring
 date:       2023-11-07
-summary:    A tutorial for using Prodzilla and Shuttle to Get Free Synthetic Monitoring
+summary:    A tutorial for using open-source Rust - Prodzilla and Shuttle - to get synthetic checks for free!
 categories: 
 ---
 
