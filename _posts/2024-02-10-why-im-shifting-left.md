@@ -26,7 +26,7 @@ However, despite its popularity, I remain skeptical about the effectiveness of S
 
 This single gap is the leading cause of overconfidence in the stability and performance of software, and hence production incidents.
 
-**Dev Efficiency** It's 2024. Software engineering is changing. The fastest delivering engineers on any team will at times have multiple pull requests open, relying on automated tests run somewhere in GitHub or GitLab land to check their work for them. Despite knowing how to do it in specific situations, I don't believe great engineers regularly spin up a local environment, as it can be incredibly time-consuming, detracts from dev time, and this work can be rightfully offloaded to the cloud VM farm.
+**Dev Efficiency**. It's 2024. Software engineering is changing. The fastest delivering engineers on any team will at times have multiple pull requests open, relying on automated tests run somewhere in GitHub or GitLab land to check their work for them. Despite knowing how to do it in specific situations, I don't believe great engineers regularly spin up a local environment, as it can be incredibly time-consuming, detracts from dev time, and this work can be rightfully offloaded to the cloud VM farm.
 
 ## Embracing the Fear: Shifting Right
 
