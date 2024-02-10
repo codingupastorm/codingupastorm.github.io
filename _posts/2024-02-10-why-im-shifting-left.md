@@ -12,7 +12,7 @@ The latest buzzword that's probably injecting a few too many technical items on 
 
 However, despite its popularity, I remain skeptical about the effectiveness of Shifting Left, or at least the way that it's generally applied. Here's why:
 
-### The Downsides of Shifting Left
+#### The Downsides of Shifting Left
 
 **Running services locally requires high dependence on mocks / fakes**. To run things locally or in early environments, teams often rely on mocks or fakes to stub out responses from downstream services. These require significant time to create and maintain, obviously don't operate the same way as their real counterparts in production, and risk becoming outdated over time as the real service is updated.
 
@@ -30,11 +30,11 @@ This single gap is the leading cause of overconfidence in the stability and perf
 
 ## Embracing the Fear: Shifting Right
 
-![An IQ bell curve suggesting to test in production](/images/iq-bell-curve.png)
+![An IQ bell curve suggesting to test in production](/images/iq-bell-curve.jpg)
 
 Shifting Right, on the other hand, is about embracing the once-taboo practice of testing in production. "Testing in Production" used to be synonymous with recklessness. Today, I see it as a sign of sophistication, and I see a lot of potential in this domain for enhancing software reliability and delivery speed.
 
-### The Case for Shifting Right
+## The Case for Shifting Right
 
 **Authentic Validation**. Testing in prod offers a level of assurance unmatched by any pre-prod environment. When you observe your software operating successfully in the real world, you know it's genuinely ready.
 
