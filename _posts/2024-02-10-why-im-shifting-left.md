@@ -12,7 +12,7 @@ The latest buzzword that's probably injecting a few too many technical items on 
 
 However, despite its popularity, I remain skeptical about the effectiveness of Shifting Left, or at least the way that it's generally applied. Here's why:
 
-#### The Downsides of Shifting Left
+## The Downsides of Shifting Left
 
 **Running services locally requires high dependence on mocks / fakes**. To run things locally or in early environments, teams often rely on mocks or fakes to stub out responses from downstream services. These require significant time to create and maintain, obviously don't operate the same way as their real counterparts in production, and risk becoming outdated over time as the real service is updated.
 
@@ -42,10 +42,6 @@ Shifting Right, on the other hand, is about embracing the once-taboo practice of
 
 **Cost Efficiency**: One thing engineering management everywhere is talking about more than shifting left is reducing cloud costs! Most dev teams are operating with 4-5 environments in various states of disrepair, but get almost all of their value from 1-2 of these (hint: one of these is prod!). Maintaining multiple dev or testing environments is a costly affair. By focusing on production, we can reduce unnecessary expenditure on cloud resources.
 
-## A Fine Balance
-
-All this is to say, as with all things, the correct approach is likely balanced. If your engineers aren't getting any feedback about the quality or behaviour of their code until the end of some pipeline, then yes, please shift left. But don't fret just because your team isn't running anything locally - consider this might actually be a good thing!
-
 ## Introducing Prodzilla
 
 It's from this perspective that I'm developing [Prodzilla](https://prodzilla.io).
@@ -54,9 +50,8 @@ Right now Prodzilla is an open-source, low-code, synthetic monitoring tool, with
 
 If you like the idea, please give us a star [on our Github](https://github.com/prodzilla/prodzilla)! 
 
-
 ## Conclusion
 
-While Shifting Left has its merits in promoting earlier feedback and bug detection, it is not a silver bullet. The losses associated with an over-reliance on simulated environments are significant. 
+All this is to say, as with all things, the correct approach is likely balanced. If your engineers aren't getting any feedback about the quality or behaviour of their code until the end of some pipeline, then yes, please shift left. But don't fret just because your team isn't running anything locally - consider this might actually be a good thing! Shifting Left on its own is not a silver bullet, and the losses associated with an over-reliance on simulated environments are significant. 
 
 Shifting Right offers a pragmatic, reality-grounded approach that aligns testing with actual user experiences. I hope Prodzilla can be one part of this journey, aiming to make testing in production a feasible, efficient, and integral part of the software development lifecycle.
