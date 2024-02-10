@@ -2,7 +2,7 @@
 layout:     post
 title:      Everyone's Talking about Shifting Left - Here's Why I'm Shifting Right
 date:       2023-11-07
-summary:    Some summary
+summary:    Why Shifting Left isn't a silver bullet, the advantages of testing more in production instead, and how Prodzilla can help achieve it. 
 categories: 
 ---
 
