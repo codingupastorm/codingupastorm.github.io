@@ -47,11 +47,13 @@ Using Rust for Prodzilla was a very deliberate decision - for the following reas
 
 ### Performance and Predictability
 
-The primary reason for choosing Rust was that I wanted to be proud of Prodzilla performance-wise. A synthetic checker is a nice, compartmentalized project, it shouldn’t need significant overhead. It should be able to run on virtually anything, and it should be cheap. Rust is of course known for its low-memory and high-speed. What really won me over is this oft-cited table from a [2017 paper](https://greenlab.di.uminho.pt/wp-content/uploads/2017/10/sleFinal.pdf) that describes the relative energy efficiency of programming languages, as measured by a function of execution time and memory consumption:
+The primary reason for choosing Rust was that I wanted to be proud of Prodzilla performance-wise. A synthetic checker is a nice, compartmentalized project, it shouldn’t need significant overhead. It should be able to run on virtually anything, and it should be cheap. Rust is of course known for its low-memory and high-speed. What really won me over is this oft-cited table from a [2017 paper](https://greenlab.di.uminho.pt/wp-content/uploads/2017/10/sleFinal.pdf) that describes the relative energy efficiency of programming languages:
 
 ![A table listing Rust as the most energy-efficient programming languae](/images/language-table.png){:style="display:block; margin-left:auto; margin-right:auto"}
 
-Despite such strength in performance, Rust behaves like a high level language for general http client / server functionality. In some ways it feels like getting a performance boost “for free”.
+This is a contrived measurement, but it's a function of execution time and memory consumption - and Rust is just behind C!
+
+Yet despite such strength in performance, Rust behaves like a high level language for general http client / server functionality. In some ways it feels like getting a performance boost “for free”.
 
 Given I was building a monitoring tool, and also one that I’m going to release publicly and tie my name to, I also wanted it to be maximally predictable and reliable itself. Generally this is all referenced under the umbrella of “memory safety”, but I have continually found the compiler is protecting me from doing dumb things - for example catching iterator invalidation, or ensuring that Prodzilla’s execution state can be shared across threads.
 
@@ -59,7 +61,7 @@ Given I was building a monitoring tool, and also one that I’m going to release
 
 Alongside the technical reasons though, I’ve been following and learning Rust for a few years, and I really like the Rust community. It’s hard to ignore Rust repeatedly [topping the StackOverflow developer survey](https://survey.stackoverflow.co/2023/) in languages developers want to use more, or [spicy articles from Discord](https://discord.com/blog/why-discord-is-switching-from-go-to-rust) about the benefits of porting a service from Go to Rust. 
 
-Moreover, I especially like where Rust is right now in the web space. It really feels like there’s a lot of smart people working on the next generation of web development tools - it feels like the place to be. There are a range of great open-source web dev tools that are just reaching critical levels of maturity. [Axum](https://github.com/tokio-rs/axum), which I used to build Prodzilla, feels ready for out of the box web dev, and is crazy-performant, as I write about later. More recently available is [Loco](https://github.com/loco-rs/loco), a Rails-like framework for building web applications Rust that's picking up steam. And in dev-tooling and hosting there’s [Shuttle](https://github.com/shuttle-hq/shuttle), a 1-line hosting solution for Rust backends.
+Moreover, I especially like where Rust is right now in the web space. It really feels like there’s a lot of smart people working on the next generation of web development tools - it feels like the place to be. There are a range of great open-source web dev tools that are just reaching critical levels of maturity. [Axum](https://github.com/tokio-rs/axum), which I used to build Prodzilla, feels ready for out of the box web dev, and is crazy-performant, as I write about later. More recently available is [Loco](https://github.com/loco-rs/loco), a Rails-like framework for building web applications in Rust that's picking up steam. And in dev-tooling and hosting there’s [Shuttle](https://github.com/shuttle-hq/shuttle), a 1-line hosting solution for Rust backends.
 
 I saw all of this happening and wanted to contribute.
 
@@ -70,7 +72,7 @@ It’s not just open-source tools either; it feels like there is real industry t
 Before Prodzilla, I’d read ['The Book'](https://doc.rust-lang.org/book/) a couple of times, and had made my way through Rustlings, but hadn’t yet built a serious project in Rust.
 
 ### Faster Than Expected
-Knowing the performance and safety benefits of using Rust, I expected to find it much slower than languages like to build a real project in. Surprisingly, across the board I found that I was generally moving fast. Some small syntactic sugar goes a long way - coming from Golang and its verbose error handling, using `?` for error propagation feels amazing.
+Knowing the performance and safety benefits of using Rust, I expected to find it much slower than languages like Kotlin, C#, or Golang to build a real project in. Surprisingly, across the board I found that I was generally moving fast. Some small syntactic sugar goes a long way - coming from Golang and its verbose error handling, using `?` for error propagation feels great.
 
 ### Fighting the Borrow Checker - and Calling in an Ally
 A sentiment I’ve heard over the years is of developers ‘fighting the borrow checker’. ‘Fighting’ seems too strong a word for my experience. But maybe that’s because - one thing that I haven’t heard enough people mention enough - ChatGPT is pretty good at fighting back! 
@@ -91,7 +93,7 @@ I now know that in a situation like this we need to explicitly assign the variab
 
 ### Fighting the Borrow Checker is a Good Thing
 
-It’s kind of cool, looking at those two lines, I have a much better intrinsic mental sense of how long the memory lives, without allocating anything myself (still not a perfect sense - still learning!).
+It’s kind of cool, looking at those two lines, I have a much better intrinsic mental sense (still not a perfect sense - definitely still learning!) of how long the memory lives, without allocating anything myself.
 
 Given all of this, I’m glad the borrow checker’s been fighting me. I’ve had to be more thoughtful about what memory should live where, and for how long, I’ve had AI help, and as you’ll see in the next section the performance benefits are real!
 
@@ -99,7 +101,7 @@ Given all of this, I’m glad the borrow checker’s been fighting me. I’ve ha
 A couple months in of spending time on Prodzilla after work, I’m proud to that Prodzilla currently supports the following features:
 - Probing individual endpoints and Stories: chained requests to multiple endpoints, emulating real user flows
 - Verifying that response bodies, headers, and status codes meet expectations using operations such as Equals, Contains, etc.
-- Passing variables from one step of a Story to another, Github Actions-style, e.g. `${{steps.authenticate.response.body.token}}`
+- Passing variables from one step of a Story to another, Github Actions-style, e.g. `{% raw %}${{steps.authenticate.response.body.token}}{% endraw %}`
 - Automated notifications for probe or story failures via webhooks
 - Manually triggering a probe or story via a `/trigger` endpoint
 - Retrieving a history of previous behavior for all probes and stories
@@ -107,11 +109,11 @@ A couple months in of spending time on Prodzilla after work, I’m proud to that
 - Configuring all of this via yaml - **without writing code**!
 
 ### Small Footprint, Lightning Fast
-Whilst running, Prodzilla consumes about 9MB of memory. Note that currently probe and story history is stored in memory rather than in a database, so this can inflate when calling sites with large response bodies. In the future I’ll introduce persistent storage.
+Whilst running, Prodzilla consumes about **9MB** of memory. Note that currently probe and story history is stored in memory rather than in a database, so this can inflate when calling sites with large response bodies. In the future I’ll introduce persistent storage.
 
-When testing with 10 multi-step probes being triggered every second (more than I expect anyone is reasonably going to be probing), memory barely moved from that 9MB mark, and at max consumed around 1.5% of my CPU, a crusty old i7-8550U @ 1.80GHz.
+When testing with 10 multi-step probes being triggered every second (more than I expect anyone is reasonably going to be probing), memory barely moved from that 9MB mark, and at max consumed around **1.5% of my CPU**, a crusty old i7-8550U @ 1.80GHz.
 
-The size of the production binary is 7.8MB.
+The size of the production binary is **7.8MB**.
 
 As someone who has worked as a backend engineer for their whole career, across Golang, Kotlin, C# - these numbers are pretty crazy. An empty spring boot application - a point of reference as a very common backend framework - is going to run with somewhere between 100-200MB of RAM. To have a web server and a synthetic monitoring agent running under 10MB - this feels like magic, but also a step in the right direction.
 
@@ -164,8 +166,8 @@ All up, I've been working on a new synthetic monitoring tool, and I'm glad I dec
 
 More than anything else I'm looking forward to feedback from everyone that tries out Prodzilla, and especially from anyone that would love to use it but needs *just that one more specific feature*.
 
-Please get in touch at any of the below:
+Feel free to get in touch at any of the below:
 
 - [prodzilla.io](https://www.prodzilla.io)
-- [Discord](https://discord.gg/ud55NhraUm)
-- [Twitter / X](https://x.com/codingupastorm)
+- [Prodzilla's Discord](https://discord.gg/ud55NhraUm)
+- [@codingupastorm on Twitter / X](https://x.com/codingupastorm)
