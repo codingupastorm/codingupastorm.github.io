@@ -127,7 +127,7 @@ When building Prodzilla, I had a couple of hosting problems to overcome:
 One of the hardest parts of encouraging usage of open-source tools is the burden users have of hosting it themselves. To get a real backend service up and running, connected to a database, and exposed at some nice url - despite being the backbone of every production application ever - is not a streamlined process. When building and hosting any proof-of-concept or side project, these tasks are a huge time-sink.
 
 ### Enter Shuttle
-Trying to work out how to overcome this, somewhere along the way I found [Shuttle](https://www.shuttle.rs/), which is an open-source platform that allows free hosting of Rust applications (behind the scenes on AWS). What surprised me about Shuttle was that without manually provisioning anything in AWS or GCP, I could deploy an application for free with just slight tweaks to my application code. I ported Prodzilla to deploy on Shuttle in about 5 minutes. [Here’s the diff](https://github.com/prodzilla/prodzilla/compare/main...shuttle).
+Trying to work out how to overcome this, somewhere along the way I found [Shuttle](https://www.shuttle.rs/), which is an open-source platform that allows free hosting of Rust applications (using AWS behind the scenes). What surprised me about Shuttle was that without manually provisioning anything in AWS or GCP, I could deploy an application for free with just slight tweaks to my application code. I ported Prodzilla to deploy on Shuttle in about 5 minutes. [Here’s the diff](https://github.com/prodzilla/prodzilla/compare/main...shuttle).
 
 The core of the change is essentially adding an attribute and a return type to the main function:
 
