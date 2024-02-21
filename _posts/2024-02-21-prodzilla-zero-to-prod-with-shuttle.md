@@ -6,15 +6,15 @@ summary:    Why I chose Rust to build Prodzilla, how you can host it on Shuttle 
 categories: 
 ---
 
-I’ve been working on [Prodzilla](https://github.com/prodzilla/prodzilla), a modern synthetic monitoring tool built in Rust. I wanted to share how it's different to existing tooling, why I’ve built it in Rust, how you can host it for free on Shuttle, and what I'm trying to achieve in the long-term.
+I’ve been working on [Prodzilla](https://github.com/prodzilla/prodzilla), a modern synthetic monitoring tool built in Rust. I wanted to share how it's different to existing tools, why I’ve built it in Rust and how you can host it for free on Shuttle, and what I hope to achieve in the long-term.
 
 ## What-zilla?
 
-A staple component in the testing and observability of SaaS products is synthetic monitoring - probing services in production to ensure they’re up and working as expected. Several synthetic monitoring tools exist, which generally shallowly check connectivity to an endpoint - they rarely support the testing of real system behavior.
+Synthetic monitoring is a staple component in the testing and observability of SaaS products - probing services in production to ensure they’re up and working as expected. Many synthetic monitoring tools exist, which generally shallowly check connectivity to an endpoint - they rarely support the testing of real system behavior.
 
 As a synthetic monitoring tool Prodzilla is unique in a couple of key ways. Firstly, it focuses on testing complex user flows in the way a real user would, by allowing chained requests, user authentication, and use of response body values in subsequent requests.
 
-Secondly, it optimizes for human readability, allowing the creation and verification of these complex flows with just yaml, rather than requiring written code. This yaml file is all that’s needed to have a user flow with multiple steps scheduled to be tested every 60 seconds, assert that the system behavior is as expected, and notify you if it’s not. I hope to make this more human readable over time, both in yaml and via UI.
+Secondly, it optimizes for human readability, allowing the creation and verification of these complex flows with just yaml, rather than requiring written code. This yaml file is all that’s needed to have a multi-step user flow scheduled to be tested every 60 seconds, assert that the system behavior is as expected, and notify you if it’s not. I hope to make this more human readable over time, both in yaml and via UI.
 
 ```yaml
 stories:
@@ -49,7 +49,7 @@ Using Rust for Prodzilla was a very deliberate decision - for the following reas
 
 The primary reason for choosing Rust was that I wanted to be proud of Prodzilla performance-wise. A synthetic checker is a nice, compartmentalized project, it shouldn’t need significant overhead. It should be able to run on virtually anything, and it should be cheap. Rust is of course known for its low-memory and high-speed. What really won me over is this oft-cited table from a [2017 paper](https://greenlab.di.uminho.pt/wp-content/uploads/2017/10/sleFinal.pdf) that describes the relative energy efficiency of programming languages, as measured by a function of execution time and memory consumption:
 
-![A table listing Rust as the most energy-efficient programming languae](/images/language-table.png)
+![A table listing Rust as the most energy-efficient programming languae](/images/language-table.png){:style="display:block; margin-left:auto; margin-right:auto"}
 
 Despite such strength in performance, Rust behaves like a high level language for general http client / server functionality. In some ways it feels like getting a performance boost “for free”.
 
